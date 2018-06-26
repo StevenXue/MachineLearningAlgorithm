@@ -2,7 +2,7 @@
 *  简单的GradientBoostDecisionTree回归实现
 *  简单的GradientBoostDecisionTree分类实现
 <br>
-直接运行gbd_regressor_example.py即可<br>
+直接运行gbd_regressor_example.py 或 gbdt_classifier_example.py 即可<br>
 <br>
 
 
