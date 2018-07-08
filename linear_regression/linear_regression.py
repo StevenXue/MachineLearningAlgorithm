@@ -1,3 +1,10 @@
+# -*- coding:utf-8 -*-
+"""
+ @desc: SVM Model
+ @author: StevenXue
+ @date: 2018/6/28
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression

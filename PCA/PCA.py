@@ -1,4 +1,10 @@
 # -*- coding: UTF-8 -*-
+"""
+ @desc:  PCA demo implement
+ @author: StevenXue
+ @date: 2018/6/26
+"""
+
 import numpy as np
 from sklearn import datasets
 import matplotlib.pyplot as plt
@@ -8,9 +14,7 @@ class PCA():
     """
     PCA 算法实例
     """
-
-    @staticmethod
-    def calculate_covariance_matrix(X, Y=None):
+    def calculate_covariance_matrix(self, X, Y=None):
         """
         计算协方差矩阵
         :param X:
@@ -23,7 +27,6 @@ class PCA():
         Y = X if Y is None else Y - np.mean(Y, axis=0)
         return 1 / m * np.matmul(X.T, Y)
 
-    @classmethod
     def transform(self, X, n_components):
         """
          假设 n=X.shape[1]，将n维数据降维成n_component维
