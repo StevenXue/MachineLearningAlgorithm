@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-  
 """  
- @desc:  
+ @desc: 决策树模型构建： 包含分类，回归两种
  @author: StevenXue 
- @date: 2018/6/6
- """
+ @date: 2018/06/06
+"""
 
 from utils.utils import *
+from utils.data_operation import calculate_entropy
 
 
 class DecisionNode():
@@ -226,3 +227,30 @@ class RegressionTree(DecisionTree):
         self._impurity_calculation = self._calculate_variance_reduction
         self._leaf_value_calculation = self._mean_of_y
         super(RegressionTree, self).fit(X, y)
+
+
+class ClassificationTree(DecisionTree):
+    def _calculate_information_gain(self, y, y1, y2):
+        # Calculate information gain
+        p = len(y1) / len(y)
+        entropy = calculate_entropy(y)
+        info_gain = entropy - p * calculate_entropy(y1) - (1 - p) * calculate_entropy(y2)
+        # print("info_gain", info_gain)
+        return info_gain
+
+    def _majority_vote(self, y):
+        most_common = None
+        max_count = 0
+        for label in np.unique(y):
+            # Count number of occurences of samples with label
+            count = len(y[y == label])
+            if count > max_count:
+                most_common = label
+                max_count = count
+        # print("most_common :",most_common)
+        return most_common
+
+    def fit(self, X, y):
+        self._impurity_calculation = self._calculate_information_gain
+        self._leaf_value_calculation = self._majority_vote
+        super(ClassificationTree, self).fit(X, y)
