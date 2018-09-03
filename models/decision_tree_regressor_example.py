@@ -12,7 +12,7 @@ def main():
     print("-- Regression Tree --")
 
     # Load temperature data
-    data = pd.read_csv('../Temperature_Link_Oping.txt', sep="\t")
+    data = pd.read_csv('datasets/Temperature_Link_Oping.txt', sep="\t")
 
     time = np.atleast_2d(data["timestamp"].as_matrix()).T
     temp = np.atleast_2d(data["temperature"].as_matrix()).T
